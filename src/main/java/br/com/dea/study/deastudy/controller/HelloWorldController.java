@@ -34,7 +34,7 @@ public class HelloWorldController {
 
         try {
             Users users = usersService.findUserByLinkedin(linkedin);
-            return ResponseEntity.ok("I found this user: " + users);
+            return ResponseEntity.ok("I found this user: " + users.getName());
         } catch (Error error) {
             return ResponseEntity.ok("Not found any user");
         }

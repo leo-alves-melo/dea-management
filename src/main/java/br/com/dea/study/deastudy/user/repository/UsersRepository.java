@@ -16,6 +16,4 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     @Query("SELECT u FROM Users u WHERE name = :name")
     public Optional<Users> findByName(String name);
 
-    @Query("SELECT u FROM Users u WHERE linkedin = :linkedin")
-    public Optional<Users> findByLinkedin(String linkedin);
 }
