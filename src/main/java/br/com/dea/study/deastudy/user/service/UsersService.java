@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +40,9 @@ public class UsersService {
         Optional<Users> user = users.stream().findFirst();
 
         return user.orElseThrow(() -> new NotFoundException(Users.class, linkedin));
+    }
+
+    public Page<Users> findAllUsersPaginated(Integer page, Integer pageSize) {
+        return this.usersRepository.findAllPaginated(PageRequest.of(page, pageSize));
     }
 }

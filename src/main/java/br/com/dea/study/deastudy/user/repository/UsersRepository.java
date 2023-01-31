@@ -3,6 +3,8 @@ package br.com.dea.study.deastudy.user.repository;
 import br.com.dea.study.deastudy.user.domain.Users;
 import jakarta.persistence.Entity;
 import jakarta.persistence.NamedQuery;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,8 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     @Query("SELECT u FROM Users u WHERE name = :name")
     public Optional<Users> findByName(String name);
+
+    @Query("SELECT u FROM Users u")
+    public Page<Users> findAllPaginated(Pageable pageable);
 
 }
