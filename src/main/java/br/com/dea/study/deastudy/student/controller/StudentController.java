@@ -6,6 +6,7 @@ import br.com.dea.study.deastudy.student.repository.StudentRepository;
 import br.com.dea.study.deastudy.student.service.StudentService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Slf4j
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -46,11 +48,15 @@ public class StudentController {
 
     }
 
-    @GetMapping("/student/id")
-    public StudentDTO getStudent(@RequestParam long id) {
+    @GetMapping("/student/{id}")
+    public StudentDTO getStudent(@PathVariable long id) {
+
+        log.info(String.format("Looking for student by id : Id : %s", id));
 
         Student student = this.studentService.findById(id);
         StudentDTO studentDTO = StudentDTO.fromStudent(student);
+
+        log.info(String.format("Returning student by id : Id : %s", id));
         return studentDTO;
 
     }
