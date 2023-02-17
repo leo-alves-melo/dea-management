@@ -88,4 +88,3 @@ public class GlobalExceptionHandler {
                 .body(new ApiCallError<Map<String, String>>("Method argument validation failed", details));
     }
 }
-

@@ -1,5 +1,8 @@
 package br.com.dea.study.deastudy;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.dea.study.deastudy.user.domain.Users;
@@ -11,6 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
 @SpringBootApplication
+@OpenAPIDefinition(
+		info = @Info(title = "Dea Management", version = "1.0", description = "Dea Management API Description"),
+		servers = {
+				@Server(url = "http://localhost:8082/swagger", description = "Local environment URL"),
+				@Server(url = "https://deamanagement.com.br${server.servlet.contextPath}", description = "Development environment URL")
+		}
+)
 public class DeastudyApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
